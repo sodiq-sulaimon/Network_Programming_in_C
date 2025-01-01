@@ -45,6 +45,21 @@ void parseURL(char *url, char **hostname, char **port, char **path) {
     printf("path: %s\n", *path);
 }
 
+void sendRequest(SOCKET s, char *hostname, char *port, char *path) {
+    char buffer[2048];
+
+    sprintf(buffer, "GET /%s HTTP/1.1\r\n", path);
+    sprintf(buffer + strlen(buffer), "Host: %s:%s\r\n", hostname, port);
+    sprintf(buffer + strlen(buffer), "Connection: close\r\n");
+    sprintf(buffer + strlen(buffer), "User-Agent: honpwc web_get 1.0\r\n");
+    sprintf(buffer + strlen(buffer), "\r\n");
+
+    send(s, buffer, strlen(buffer), 0);
+    printf("Sent Headers:\n%s", buffer);
+}
+
+
+
 int main() {
 
     return 0;
