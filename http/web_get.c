@@ -45,3 +45,7 @@ void parseURL(char *url, char **hostname, char **port, char **path) {
     printf("path: %s\n", *path);
 }
 
+int main() {
+
+    return 0;
+}
